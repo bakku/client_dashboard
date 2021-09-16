@@ -12,16 +12,9 @@
  *
  */
 
- // Custom bootstrap variables must be set or imported *before* bootstrap.
- @import "bootstrap";
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
 
- .navbar-brand
-{
-    width: 100px !important;
-}
-
-.table-responsive
-{
-    padding-top: 20px;
-    padding-bottom: 10px;
+.turbolinks-progress-bar {
+  background-color: #dc3545;
 }

@@ -1,9 +1,5 @@
-<div class="container">
+<div class="container mt-4">
   <h1>New Contractor</h1>
-</div>
-<div class="container">
-  <%= render 'form', contractor: @contractor %>
-</div>
-<div class="container">
-  <%= link_to 'Back', contractors_path %>
+
+  <%= render "form", contractor: @contractor, back_path: contractors_path %>
 </div>

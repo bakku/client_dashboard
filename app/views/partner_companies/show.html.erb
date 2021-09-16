@@ -1,14 +1,11 @@
-<div class="container">
-  <p>
+<div class="container mt-4">
+  <h1><%= @partner_company.name %></h1>
+
+  <p class="mt-3">
     <strong>Identity:</strong>
     <%= @partner_company.identity %>
   </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @partner_company.name %>
-  </p>
-</div>
-<div class="container">
-  <%= link_to 'Edit', edit_partner_company_path(@partner_company) %> | <%= link_to 'Back', partner_companies_path %>
+  <%= link_to "Edit", edit_partner_company_path(@partner_company), class: "btn btn-primary" %>
+  <%= link_to "Back", partner_companies_path, class: "btn btn-primary" %>
 </div>

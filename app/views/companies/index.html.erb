@@ -1,7 +1,15 @@
-<div class="container table-responsive">
-<h1>Companies</h1>
-  <table class="table table-hover table-sm">
-    <thead class="thead-dark">
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm">
+      <h1>Companies</h1>
+    </div>
+    <div class="col-sm">
+      <%= link_to "New Company", new_company_path, class: "btn btn-primary float-right" %>
+    </div>
+  </div>
+
+  <table class="table table-hover mt-4">
+    <thead class="thead-light">
       <tr>
         <th>Identity</th>
         <th>Name</th>
@@ -20,15 +28,11 @@
           <td><%= link_to company.employee_ids.count, employees_path(company_id: company) %></td>
           <td><%= link_to company.contractor_ids.count, contractors_path(company_id: company) %></td>
           <td><%= link_to company.client_ids.count, clients_path(company_id: company) %></td>
-          <td><%= link_to 'Show', company %></td>
-          <td><%= link_to 'Edit', edit_company_path(company) %></td>
-          <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Show", company %></td>
+          <td><%= link_to "Edit", edit_company_path(company) %></td>
+          <td><%= link_to "Destroy", company, method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
-
-<div class="container">
-  <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %>
 </div>

@@ -1,19 +1,11 @@
-<div class="container">
-  <p>
+<div class="container mt-4">
+  <h1><%= @client.first_name %> <%= @client.last_name %></h1>
+
+  <p class="mt-3">
     <strong>Ctoken:</strong>
     <%= @client.ctoken %>
   </p>
 
-  <p>
-    <strong>First Name:</strong>
-    <%= @client.first_name %>
-  </p>
-
-  <p>
-    <strong>Last Name:</strong>
-    <%= @client.last_name %>
-  </p>
-</div>
-<div class="container">
-  <%= link_to 'Edit', edit_client_path(@client) %> | <%= link_to 'Back', clients_path %>
+  <%= link_to "Edit", edit_client_path(@client), class: "btn btn-primary" %>
+  <%= link_to "Back", clients_path, class: "btn btn-primary" %>
 </div>

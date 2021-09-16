@@ -1,9 +1,5 @@
-<div class="container">
+<div class="container mt-4">
   <h1>New Employee</h1>
-</div>
-<div class="container">
-  <%= render 'form', employee: @employee %>
-</div>
-<div class="container">
-  <%= link_to 'Back', employees_path %>
+
+  <%= render "form", employee: @employee, back_path: employees_path %>
 </div>

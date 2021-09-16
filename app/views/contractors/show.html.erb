@@ -1,20 +1,11 @@
+<div class="container mt-4">
+  <h1><%= @contractor.first_name %> <%= @contractor.last_name %></h1>
 
-<div class="container">
-  <p>
-    <strong>First Name:</strong>
-    <%= @contractor.first_name %>
-  </p>
-
-  <p>
-    <strong>Last Name:</strong>
-    <%= @contractor.last_name %>
-  </p>
-
-  <p>
+  <p class="mt-3">
     <strong>Partner Company:</strong>
     <%= @contractor.partner_company.name %>
   </p>
-</div>
-<div class="container">
-  <%= link_to 'Edit', edit_contractor_path(@contractor) %> | <%= link_to 'Back', contractors_path %>
+
+  <%= link_to "Edit", edit_contractor_path(@contractor), class: "btn btn-primary" %>
+  <%= link_to "Back", contractors_path, class: "btn btn-primary" %>
 </div>

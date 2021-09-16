@@ -5,31 +5,33 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to 'Dashboard', root_path, class:"navbar-brand" %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <%= link_to "Dashboard", root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" style="float: right">
-          <li class="nav-item nav-link"><%= link_to "Companies", companies_path %></li>
-          <li class="nav-item nav-link"><%= link_to "Employees", employees_path %></li>
-          <li class="nav-item nav-link"><%= link_to "Partner Companies", partner_companies_path %></li>
-          <li class="nav-item nav-link"><%= link_to "Contractors", contractors_path %></li>
-          <li class="nav-item nav-link"><%= link_to "Clients", clients_path %></li>
+          <li class="nav-item"><%= link_to "Companies", companies_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Employees", employees_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Partner Companies", partner_companies_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Contractors", contractors_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Clients", clients_path, class: "nav-link" %></li>
         </ul>
       </div>
     </nav>
+
     <% flash.each do |key, value| %>
       <div class="<%= flash_class(key.to_sym) %>">
-            <%= value %>
+        <%= value %>
       </div>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
