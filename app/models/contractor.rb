@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Contractor < ApplicationRecord
   belongs_to :partner_company
   has_many :consultants, dependent: :destroy
@@ -6,10 +8,10 @@ class Contractor < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  scope :for_given_clients, -> (client_ids) { joins(:clients).where('clients.id' => client_ids) }
+  scope :for_given_clients, ->(client_ids) { joins(:clients).where("clients.id" => client_ids) }
 
   def clients_without_employees
-    clients - Client.joins(:consultants).where('consultants.employee_id').uniq
+    clients - Client.joins(:consultants).where("consultants.employee_id").uniq
   end
 
   def client_ids

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :partner_company do
-    name { 'Company Name' }
-    identity { 'P/ABCD' }
+    name { "Company Name" }
+    identity { "P/ABCD" }
   end
 end

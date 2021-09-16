@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :company do
-    name { 'Company Name' }
-    identity { 'ABCD:EFGH' }
+    name { "Company Name" }
+    identity { "ABCD:EFGH" }
   end
 end

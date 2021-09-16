@@ -1,18 +1,12 @@
+# frozen_string_literal: true
+
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: %i[show edit update destroy]
 
   # GET /clients
   # GET /clients.json
   def index
-    if params[:company_id]
-      @clients = Client.for_company(params[:company_id]).all
-    elsif params[:partner_company_id]
-      @clients = Client.for_partner_company(params[:partner_company_id]).all
-    elsif params[:employee_id]
-      @clients = Client.for_given_employees(params[:employee_id]).all
-    else
-      @clients = Client.all
-    end
+    @clients = client_scope.all
   end
 
   # GET /clients/1
@@ -36,7 +30,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+        format.html { redirect_to @client, notice: "Client was successfully created." }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new }
@@ -50,7 +44,7 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to @client, notice: "Client was successfully updated." }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
@@ -64,19 +58,28 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_client
-      @client = Client.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def client_params
-      params.require(:client).permit(:ctoken, :first_name, :last_name, :employee_id, :partner_company_id)
-    end
+  def client_scope
+    return Client.for_company(params[:company_id]) if params[:company_id]
+    return Client.for_partner_company(params[:partner_company_id]) if params[:partner_company_id]
+    return Client.for_given_employees(params[:employee_id]) if params[:employee_id]
+
+    Client
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_client
+    @client = Client.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def client_params
+    params.require(:client).permit(:ctoken, :first_name, :last_name, :employee_id, :partner_company_id)
+  end
 end

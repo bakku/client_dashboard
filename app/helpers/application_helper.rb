@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
+  FLASH_TRANSLATION = {
+    notice: "info",
+    success: "success",
+    error: "error",
+    alert: "error"
+  }.freeze
+
   def flash_class(level)
-    case level
-    when :notice then 'alert alert-info'
-    when :success then 'alert alert-success'
-    when :error then 'alert alert-error'
-    when :alert then 'alert alert-error'
-    end
+    "alert alert-#{FLASH_TRANSLATION.fetch(level)}"
   end
 end

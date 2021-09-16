@@ -1,16 +1,12 @@
+# frozen_string_literal: true
+
 class ContractorsController < ApplicationController
-  before_action :set_contractor, only: [:show, :edit, :update, :destroy]
+  before_action :set_contractor, only: %i[show edit update destroy]
 
   # GET /contractors
   # GET /contractors.json
   def index
-    if params[:partner_company_id].present?
-      @contractors = Contractor.where(partner_company_id: params[:partner_company_id]).all
-    elsif params[:company_id].present?
-      @contractors = Contractor.for_given_clients(Company.where(id: params[:company_id]).first.client_ids).all
-    else
-      @contractors = Contractor.all
-    end
+    @contractors = contractor_scope.all
   end
 
   # GET /contractors/1
@@ -34,7 +30,7 @@ class ContractorsController < ApplicationController
 
     respond_to do |format|
       if @contractor.save
-        format.html { redirect_to @contractor, notice: 'Contractor was successfully created.' }
+        format.html { redirect_to @contractor, notice: "Contractor was successfully created." }
         format.json { render :show, status: :created, location: @contractor }
       else
         format.html { render :new }
@@ -48,7 +44,7 @@ class ContractorsController < ApplicationController
   def update
     respond_to do |format|
       if @contractor.update(contractor_params)
-        format.html { redirect_to @contractor, notice: 'Contractor was successfully updated.' }
+        format.html { redirect_to @contractor, notice: "Contractor was successfully updated." }
         format.json { render :show, status: :ok, location: @contractor }
       else
         format.html { render :edit }
@@ -62,19 +58,27 @@ class ContractorsController < ApplicationController
   def destroy
     @contractor.destroy
     respond_to do |format|
-      format.html { redirect_to contractors_url, notice: 'Contractor was successfully destroyed.' }
+      format.html { redirect_to contractors_url, notice: "Contractor was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_contractor
-      @contractor = Contractor.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def contractor_params
-      params.require(:contractor).permit(:first_name, :last_name, :partner_company_id, :company_id)
-    end
+  def contractor_scope
+    return Contractor.where(partner_company_id: params[:partner_company_id]) if params[:partner_company_id].present?
+    return Contractor.for_given_clients(Company.find(params[:company_id]).client_ids) if params[:company_id].present?
+
+    Contractor
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_contractor
+    @contractor = Contractor.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def contractor_params
+    params.require(:contractor).permit(:first_name, :last_name, :partner_company_id, :company_id)
+  end
 end

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :contractor do
-    first_name { 'First Name' }
-    last_name { 'Last Name' }
+    first_name { "First Name" }
+    last_name { "Last Name" }
     partner_company
   end
 end

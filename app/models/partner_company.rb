@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PartnerCompany < ApplicationRecord
   has_many :contractors, dependent: :destroy
   has_many :clients, through: :contractors
@@ -18,8 +20,9 @@ class PartnerCompany < ApplicationRecord
   private
 
   def generate_token
-    begin
-      self.identity = SimpleTokenGenerator::Generator.call(prefix: 'P/')
-    end while self.class.exists?(identity: identity)
+    loop do
+      self.identity = SimpleTokenGenerator::Generator.call(prefix: "P/")
+      break unless self.class.exists?(identity: identity)
+    end
   end
 end
