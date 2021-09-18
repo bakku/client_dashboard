@@ -14,12 +14,14 @@ gem "sqlite3", "~> 1.4"
 
 gem "bootstrap", "~> 4.3.1"
 gem "coffee-rails", "~> 5.0"
+gem "dropzonejs-rails", "~> 0.8"
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
 
 gem "faker"
+gem "roo", "~> 2.8.0"
 gem "simple_token_generator", github: "nicosticht/simple_token_generator"
 
 group :development, :test do

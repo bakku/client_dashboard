@@ -1,3 +1,30 @@
 // Place all the styles related to the Employees controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#employees-dropzone {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 3px dashed #0069d9;
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    .dz-image {
+        background: #17a2b8;
+    }
+
+    .dz-size {
+        span {
+            background-color: unset;
+            color: white;
+        }
+    }
+
+    .dz-filename {
+        margin-top: 30px;
+    }
+}

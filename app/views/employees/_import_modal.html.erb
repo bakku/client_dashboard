@@ -1,0 +1,37 @@
+<div class="modal fade" id="import-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Import employees</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="import-modal-uploading-body">
+          <div id="detailed-error" class="alert alert-danger" style="display: none">
+          </div>
+
+          <%= form_with url: import_employees_path, class: "dropzone", id: "employees-dropzone" %>
+        </div>
+        <div id="import-modal-successful-body" class="text-center" style="display: none">
+          <h5>File was successfully uploaded!</h5>
+
+          <button id="import-modal-finish-button" class="btn btn-success mt-3">Finish</button>
+        </div>
+      </div>
+      <div id="import-modal-footer" class="modal-footer">
+        <div id="modal-footer-idle">
+          <button id="import-modal-close-btn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="import-modal-upload-btn" type="button" class="btn btn-primary">Upload</button>
+        </div>
+        <div id="modal-footer-uploading" style="display: none">
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Uploading...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

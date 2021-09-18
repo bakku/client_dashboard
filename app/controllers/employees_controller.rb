@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "employee_importer"
+
 class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[show edit update destroy]
 
@@ -41,6 +43,16 @@ class EmployeesController < ApplicationController
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST /employees/import
+  def import
+    EmployeeImporter.new(params[:file]).call
+    head :ok
+  rescue EmployeeImporter::FileValidationError => e
+    render json: { error: "File structure is incorrect", detail: e.message }, status: :bad_request
+  rescue EmployeeImporter::InvalidFileError => e
+    render json: { error: e.message, detail: e.message }, status: :bad_request
   end
 
   # PATCH/PUT /employees/1

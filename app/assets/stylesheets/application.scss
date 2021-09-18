@@ -14,6 +14,8 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "dropzone/dropzone";
+@import "employees";
 
 .turbolinks-progress-bar {
   background-color: #dc3545;
