@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_325_195_955) do
+ActiveRecord::Schema.define(version: 2019_03_25_195955) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients", force: :cascade do |t|
     t.string "ctoken"
     t.string "first_name"
@@ -29,9 +31,9 @@ ActiveRecord::Schema.define(version: 20_190_325_195_955) do
   end
 
   create_table "consultants", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "contractor_id"
-    t.integer "employee_id"
+    t.bigint "client_id"
+    t.bigint "contractor_id"
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_consultants_on_client_id"
@@ -42,7 +44,7 @@ ActiveRecord::Schema.define(version: 20_190_325_195_955) do
   create_table "contractors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "partner_company_id"
+    t.bigint "partner_company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["partner_company_id"], name: "index_contractors_on_partner_company_id"
@@ -52,7 +54,7 @@ ActiveRecord::Schema.define(version: 20_190_325_195_955) do
     t.string "identifier"
     t.string "first_name"
     t.string "last_name"
-    t.integer "company_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_employees_on_company_id"

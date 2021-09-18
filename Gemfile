@@ -9,8 +9,8 @@ gem "rails", "~> 6.1.0"
 
 gem "bootsnap", ">= 1.1.0", require: false
 gem "jbuilder", "~> 2.5"
+gem "pg", "~> 1.2"
 gem "puma", "~> 3.12"
-gem "sqlite3", "~> 1.4"
 
 gem "bootstrap", "~> 4.3.1"
 gem "coffee-rails", "~> 5.0"
